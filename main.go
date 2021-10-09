@@ -15,10 +15,13 @@ func main() {
 			pokemon := &Pokemon{PokeAPIBaseURL: "https://pokeapi.co/api/v2"}
 			if err := pokemon.Find(args[0]); err != nil {
 				fmt.Printf("failed to find pokemon, err: %v\n", err)
+				return
 			}
+
 			pokemonDetails, err := pokemon.PrettyPrint()
 			if err != nil {
 				fmt.Printf("failed to format pokemon details, displaying unstructured output\n%+v\n", pokemon)
+				return
 			}
 
 			fmt.Println(pokemonDetails)
