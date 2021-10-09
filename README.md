@@ -19,7 +19,6 @@ Flags:
 Use "kidex [command] --help" for more information about a command.
 ```
 
-
 ## Getting kidex
 
 ### Install to your go bin
