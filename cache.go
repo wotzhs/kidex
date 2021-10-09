@@ -85,11 +85,8 @@ func (c *Cache) Restore() error {
 			Encounters: "-",
 		}
 
-		if record[pos_ENCOUNTERS] != "-" {
-			encounters := []PokeomonEncounterLocations{}
-			if err := json.Unmarshal([]byte(record[pos_ENCOUNTERS]), &encounters); err != nil {
-				continue
-			}
+		encounters := []PokeomonEncounterLocations{}
+		if err := json.Unmarshal([]byte(record[pos_ENCOUNTERS]), &encounters); err == nil {
 			pokemon.Encounters = encounters
 		}
 
