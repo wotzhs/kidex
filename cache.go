@@ -169,10 +169,16 @@ func (c Cache) FindPokemon(input string) (*Pokemon, bool) {
 		}
 	}
 
-	if entry, ok := c.IDMap[identifier]; ok {
-		return &entry.Pokemon, true
+	entry, ok := c.IDMap[identifier]
+	if !ok {
+		return nil, false
 	}
-	return nil, false
+
+	if time.Since(entry.CachedAt) > 7*24*time.Hour {
+		return nil, false
+	}
+
+	return &entry.Pokemon, true
 }
 
 func (c Cache) CachePokemon(pokemon Pokemon) error {
