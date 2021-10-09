@@ -31,8 +31,9 @@ func main() {
 					fmt.Printf("failed to find pokemon, err: %v\n", err)
 					return
 				}
+
 				if err := cache.CachePokemon(*pokemon); err != nil {
-					fmt.Println("failed to update cache")
+					fmt.Println("failed to update cache, err: %v\n", err)
 				}
 			}
 
